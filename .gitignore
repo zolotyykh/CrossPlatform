@@ -532,4 +532,7 @@ obj/
 /node_modules
 /wwwroot/node_modules
 
+# Ігнорування системних файлів macOS
+.DS_Store
+
 # End of https://www.toptal.com/developers/gitignore/api/csharp,aspnetcore,dotnetcore
