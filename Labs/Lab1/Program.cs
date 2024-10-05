@@ -9,19 +9,36 @@ class Program
     {
         try
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\input.txt");
-            Console.WriteLine(filePath);
-            // Читаємо вхідні дані та перевіряємо їх
-            if (!File.Exists(filePath))
+            // Встановлюємо назви файлів
+            string inputFileName = "input.txt";
+            string outputFileName = "output.txt";
+
+            // Отримуємо базову директорію виконуваного файлу
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Побудова шляху на три рівні вище для input.txt
+            string inputFilePath = Path.Combine(baseDirectory, @"..", @"..", @"..", inputFileName);
+            string outputFilePath = Path.Combine(baseDirectory, outputFileName);
+
+            // Нормалізація шляху (щоб прибрати можливі некоректні символи, як подвійні слеші)
+            inputFilePath = Path.GetFullPath(inputFilePath);
+            outputFilePath = Path.GetFullPath(outputFilePath);
+
+            Console.WriteLine($"Шлях до вхідного файлу: {inputFilePath}");
+            Console.WriteLine($"Шлях до вихідного файлу: {outputFilePath}");
+
+            // Перевіряємо, чи існує вхідний файл
+            if (!File.Exists(inputFilePath))
             {
-                throw new FileNotFoundException("Файл INPUT.TXT не знайдено.");
+                throw new FileNotFoundException($"Файл {inputFileName} не знайдено.");
             }
 
-            string input = File.ReadAllText(filePath).Trim();
+            // Читаємо вхідні дані та перевіряємо їх
+            string input = File.ReadAllText(inputFilePath).Trim();
 
             if (!int.TryParse(input, out int n))
             {
-                throw new FormatException("Некоректний формат числа у файлі INPUT.TXT.");
+                throw new FormatException("Некоректний формат числа у файлі input.txt.");
             }
 
             if (n < 1 || n > 100)
@@ -43,9 +60,9 @@ class Program
             }
 
             // Записуємо результат у файл OUTPUT.TXT
-            File.WriteAllText("OUTPUT.TXT", dp[n].ToString());
+            File.WriteAllText(outputFilePath, dp[n].ToString());
 
-            Console.WriteLine("Результат успішно записано у файл OUTPUT.TXT");
+            Console.WriteLine($"Результат успішно записано у файл {outputFileName}");
         }
         catch (FileNotFoundException e)
         {
@@ -63,8 +80,7 @@ class Program
         {
             Console.WriteLine("Непередбачувана помилка: " + e.Message);
         }
+
         Console.ReadLine();
     }
 }
-
-
