@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Solution)' != ''">
-    <MainProjectFile Include="Labs$(Solution)$(Solution).csproj" />
-    <TestProjectFile Include="Labs$(Solution).Tests$(Solution).Tests.csproj" />
+    <MainProjectFile Include="Labs\$(Solution)\$(Solution).csproj" />
+    <TestProjectFile Include="Labs\$(Solution).Tests\$(Solution).Tests.csproj" />
   </ItemGroup>
 
   <Target Name="Build">
