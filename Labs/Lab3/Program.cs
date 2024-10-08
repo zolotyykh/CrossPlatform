@@ -72,21 +72,10 @@ class Program
                 }
             }
 
-            // Знаходження максимальної найкоротшої відстані
-            int maxShortestPath = 0;
-            for (int i = 0; i < N; i++)
-            {
-                for (int j = 0; j < N; j++)
-                {
-                    if (dist[i, j] < INF && i != j)
-                    {
-                        maxShortestPath = Math.Max(maxShortestPath, dist[i, j]);
-                    }
-                }
-            }
+            int result = ShortestPath.FindMaxShortestPath(dist, N);
 
             // Запис результату у файл
-            File.WriteAllText(outputFilePath, maxShortestPath.ToString());
+            File.WriteAllText(outputFilePath, result.ToString());
 
             Console.WriteLine($"Результат успішно записано у файл {outputFileName}");
         }
