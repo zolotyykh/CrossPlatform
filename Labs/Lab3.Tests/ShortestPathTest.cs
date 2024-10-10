@@ -74,4 +74,23 @@ public class ShortestPathTest
         // Assert
         Assert.Equal(25, result);  // Найдовший шлях - 25
     }
+
+    [Fact]
+    public void FindMaxShortestPath_DisconnectedGraph_ReturnsCorrectMaxPath()
+    {
+        // Arrange
+        int[,] dist = {
+                { 0, 7, ShortestPath.INF, ShortestPath.INF },
+                { 7, 0, 9, ShortestPath.INF },
+                { ShortestPath.INF, 9, 0, 3 },
+                { ShortestPath.INF, ShortestPath.INF, 3, 0 }
+            };
+        int N = 4;
+
+        // Act
+        int result = ShortestPath.FindMaxShortestPath(dist, N);
+
+        // Assert
+        Assert.Equal(9, result);  // Найдовший шлях - 9
+    }
 }
