@@ -102,6 +102,8 @@ namespace Lab4
     [Command(Name = "set-path", Description = "Sets the path for input and output files")]
     class SetPathCommand
     {
+        public string envVariable;
+
         [Option("-p|--path", Description = "Path to the directory containing input and output files", ShowInHelpText = true)]
         public string Path { get; }
 
@@ -109,7 +111,8 @@ namespace Lab4
         {
             if (Directory.Exists(Path))
             {
-                Environment.SetEnvironmentVariable("LAB_PATH", Path);
+                Environment.SetEnvironmentVariable("LAB_PATH", Path, EnvironmentVariableTarget.User);
+                string? envPath = Environment.GetEnvironmentVariable(envVariable, EnvironmentVariableTarget.User);
                 Console.WriteLine($"Environment variable 'LAB_PATH' set to {Path}");
                 return 0;
             }

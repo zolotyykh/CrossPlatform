@@ -10,6 +10,8 @@
     <PackageId>AZolotykhLab4</PackageId>
     <Version>1.0.7</Version>
     <Authors>Anastasiia Zolotykh</Authors>
+    <Description>A tool to run lab applications</Description>
+    <PackageOutputPath>./nupkgs</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
