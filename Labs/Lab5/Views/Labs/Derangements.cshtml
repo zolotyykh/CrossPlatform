@@ -1,0 +1,22 @@
+﻿@model Lab5.Models.DerangementsViewModel
+
+@{
+    ViewData["Title"] = "Derangements";
+}
+
+<h1>Derangements</h1>
+<p>
+    Введіть кількість елементів, щоб знайти кількість можливих дерранжментів.
+</p>
+<form method="post" action="/Lab/Derangements">
+    <div class="form-group">
+        <label for="Number">Кількість елементів:</label>
+        <input type="number" name="Number" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Обчислити</button>
+</form>
+
+@if (ViewBag.Result != null)
+{
+    <h3>Результат: @ViewBag.Result</h3>
+}

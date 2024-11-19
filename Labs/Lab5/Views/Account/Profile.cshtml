@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Профіль";
+}
+
+<h1>Ваш профіль</h1>
+<div class="card">
+    <img src="@Model.ProfileImage" alt="Profile Picture" class="card-img-top" style="max-width: 150px;" />
+    <div class="card-body">
+        <h5 class="card-title">@Model.FullName (@Model.Username)</h5>
+        <p>Email: @Model.EmailAddress</p>
+        <p>Телефон: @Model.PhoneNumber</p>
+    </div>
+</div>
+<a href="/Account/Logout" class="btn btn-danger">Вийти</a>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Реєстрація";
+}
+
+<h1>Реєстрація нового облікового запису</h1>
+<form method="post" action="/Account/Register">
+    <div class="form-group">
+        <label for="Username">Ім'я користувача</label>
+        <input type="text" name="Username" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="FullName">Повне ім'я</label>
+        <input type="text" name="FullName" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Phone">Телефон</label>
+        <input type="tel" name="Phone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" name="Email" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Password">Пароль</label>
+        <input type="password" name="Password" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Зареєструватися</button>
+</form>
