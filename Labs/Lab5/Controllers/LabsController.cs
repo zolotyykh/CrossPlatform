@@ -1,12 +1,11 @@
-﻿using Lab2;
-using Lab5.Models;
+﻿using Lab5.Models;
 using LabsLibrary;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lab5.Controllers
 {
-    public class LabController : Controller
+    public class LabsController : Controller
     {
         [Authorize]
         public IActionResult Derangements()
@@ -52,15 +51,15 @@ namespace Lab5.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.Matrix == null || model.Matrix.GetLength(0) != model.N || model.Matrix.GetLength(1) != model.M)
+                if (model.Matrix == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Матриця має бути правильної розмірності.");
+                    ModelState.AddModelError(string.Empty, "Неможливо розпарсити матрицю. Перевірте введені дані.");
                 }
                 else
                 {
                     try
                     {
-                        model.Result = KadaneUtils.FindMaxSum(model.Matrix, model.N, model.M);
+                        model.MaxSum = Lab2.KadaneUtils.FindMaxSum(model.Matrix, model.RowCount, model.ColumnCount);
                     }
                     catch (Exception ex)
                     {
@@ -84,15 +83,15 @@ namespace Lab5.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.Distances == null || model.Distances.GetLength(0) != model.N || model.Distances.GetLength(1) != model.N)
+                if (model.DistanceMatrix == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Матриця відстаней повинна бути NxN.");
+                    ModelState.AddModelError(string.Empty, "Неможливо розпарсити матрицю. Перевірте введені дані.");
                 }
                 else
                 {
                     try
                     {
-                        model.Result = Lab3.ShortestPath.FindMaxShortestPath(model.Distances, model.N);
+                        model.MaxShortestPath = Lab3.ShortestPath.FindMaxShortestPath(model.DistanceMatrix, model.GraphSize);
                     }
                     catch (Exception ex)
                     {

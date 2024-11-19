@@ -1,0 +1,34 @@
+﻿@model Lab5.Models.KadaneViewModel
+
+@{
+    ViewData["Title"] = "Kadane's Algorithm";
+}
+
+<h1>Kadane's Algorithm</h1>
+<p>
+    Введіть два натуральні числа N і M (1 ≤ N, M ≤ 100) – кількість рядків і стовпців прямокутної матриці. Далі введіть N рядків по M чисел, записаних через пробіл - елементи масиву, цілі числа, що не перевищують 100 по абсолютній величині.
+</p>
+<form method="post" action="/Labs/Kadane">
+    <div class="form-group">
+        <label for="RowCount">Кількість рядків (N):</label>
+        <input type="number" name="RowCount" class="form-control" min="1" max="100" required />
+    </div>
+    <div class="form-group">
+        <label for="ColumnCount">Кількість стовпців (M):</label>
+        <input type="number" name="ColumnCount" class="form-control" min="1" max="100" required />
+    </div>
+    <div class="form-group">
+        <label for="MatrixInput">Матриця (елементи через пробіл, рядки з нового рядка):</label>
+        <textarea name="MatrixInput" class="form-control" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Обчислити</button>
+</form>
+
+@if (Model?.MaxSum.HasValue == true)
+{
+    <strong>Результат:</strong> @(Model.MaxSum)
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

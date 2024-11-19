@@ -17,11 +17,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Views\Account\" />
     <None Remove="Views\Labs\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Labs\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
 </Project>

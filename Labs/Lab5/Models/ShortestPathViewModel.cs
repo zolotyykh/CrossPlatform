@@ -4,16 +4,45 @@ namespace Lab5.Models
 {
     public class ShortestPathViewModel
     {
-        [Required(ErrorMessage = "Необхідно вказати розмір матриці N.")]
-        [Range(1, 1000, ErrorMessage = "Розмір N повинен бути в діапазоні від 1 до 1000.")]
-        [Display(Name = "Розмір N")]
-        public int N { get; set; }
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Розмір графу повинен бути більше 0.")]
+        [Display(Name = "Розмір графу (N)")]
+        public int GraphSize { get; set; }
 
-        [Required(ErrorMessage = "Необхідно вказати матрицю відстаней.")]
-        [Display(Name = "Матриця відстаней")]
-        public int[,] Distances { get; set; }
+        [Required]
+        [Display(Name = "Матриця відстаней (рядки через новий рядок, числа через пробіл)")]
+        public string DistanceMatrixInput { get; set; }
 
-        [Display(Name = "Результат")]
-        public int? Result { get; set; }
+        public int[,] DistanceMatrix
+        {
+            get
+            {
+                try
+                {
+                    var rows = DistanceMatrixInput
+                        .Split("\r\n", StringSplitOptions.RemoveEmptyEntries)
+                        .Select(row => row.Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray())
+                        .ToArray();
+
+                    if (rows.Length != GraphSize || rows.Any(row => row.Length != GraphSize))
+                    {
+                        throw new Exception("Невідповідність розмірів матриці.");
+                    }
+
+                    var matrix = new int[GraphSize, GraphSize];
+                    for (int i = 0; i < GraphSize; i++)
+                        for (int j = 0; j < GraphSize; j++)
+                            matrix[i, j] = rows[i][j];
+
+                    return matrix;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public int? MaxShortestPath { get; set; }
     }
 }

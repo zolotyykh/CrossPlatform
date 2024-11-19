@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Профіль";
+﻿@model Lab5.Models.UserProfileViewModel;
+@{
+    ViewData["Title"] = "User Profile";
 }
 
 <h1>Ваш профіль</h1>
@@ -11,4 +12,3 @@
         <p>Телефон: @Model.PhoneNumber</p>
     </div>
 </div>
-<a href="/Account/Logout" class="btn btn-danger">Вийти</a>

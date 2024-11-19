@@ -1,0 +1,30 @@
+﻿@model Lab5.Models.ShortestPathViewModel
+
+@{
+    ViewData["Title"] = "Shortest Path";
+}
+
+<h1>Shortest Path</h1>
+<p>
+    Введіть матрицю відстаней, щоб знайти максимальний найкоротший шлях у графі.
+</p>
+<form method="post" action="/Labs/ShortestPath">
+    <div class="form-group">
+        <label for="DistanceMatrixInput">Матриця відстаней (рядки через новий рядок, числа через пробіл):</label>
+        <textarea name="DistanceMatrixInput" class="form-control" rows="5" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="GraphSize">Розмір графу (N):</label>
+        <input type="number" name="GraphSize" class="form-control" min="1" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Обчислити</button>
+</form>
+
+@if (Model?.MaxShortestPath.HasValue == true)
+{
+    <strong>Результат:</strong> @(Model.MaxShortestPath)
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

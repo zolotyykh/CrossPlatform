@@ -4,21 +4,50 @@ namespace Lab5.Models
 {
     public class KadaneViewModel
     {
-        [Required(ErrorMessage = "Необхідно вказати розмір матриці N.")]
-        [Range(1, 1000, ErrorMessage = "Розмір N повинен бути в діапазоні від 1 до 1000.")]
-        [Display(Name = "Розмір N")]
-        public int N { get; set; }
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Кількість рядків повинна бути більше 0.")]
+        [Display(Name = "Кількість рядків (N)")]
+        public int RowCount { get; set; }
 
-        [Required(ErrorMessage = "Необхідно вказати розмір матриці M.")]
-        [Range(1, 1000, ErrorMessage = "Розмір M повинен бути в діапазоні від 1 до 1000.")]
-        [Display(Name = "Розмір M")]
-        public int M { get; set; }
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Кількість стовпців повинна бути більше 0.")]
+        [Display(Name = "Кількість стовпців (M)")]
+        public int ColumnCount { get; set; }
 
-        [Required(ErrorMessage = "Необхідно вказати матрицю.")]
-        [Display(Name = "Матриця")]
-        public int[,] Matrix { get; set; }
+        [Required]
+        [Display(Name = "Матриця (рядки через новий рядок, числа через пробіл)")]
+        public string MatrixInput { get; set; }
 
-        [Display(Name = "Результат")]
-        public int? Result { get; set; }
+        public int[,] Matrix
+        {
+            get
+            {
+                try
+                {
+                    var rows = MatrixInput
+                        .Split("\r\n", StringSplitOptions.RemoveEmptyEntries)
+                        .Select(row => row.Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray())
+                        .ToArray();
+
+                    if (rows.Length != RowCount || rows.Any(row => row.Length != ColumnCount))
+                    {
+                        throw new Exception("Невідповідність розмірів матриці.");
+                    }
+
+                    var matrix = new int[RowCount, ColumnCount];
+                    for (int i = 0; i < RowCount; i++)
+                        for (int j = 0; j < ColumnCount; j++)
+                            matrix[i, j] = rows[i][j];
+
+                    return matrix;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public int? MaxSum { get; set; }
     }
 }
