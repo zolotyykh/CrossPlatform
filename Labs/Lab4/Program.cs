@@ -79,13 +79,12 @@ namespace Lab4
 
         private string GetDirectoryPath(string? directPath, string envVariable)
         {
-            // Use the direct path if specified and if it contains the required files
+    
             if (!string.IsNullOrEmpty(directPath) && Directory.Exists(directPath))
             {
                 return directPath;
             }
 
-            // Check the path from the environment variable if it contains the required files
             string? envPath = Environment.GetEnvironmentVariable(envVariable);
             Console.WriteLine(envPath);
             if (!string.IsNullOrEmpty(envPath) && Directory.Exists(envPath))
@@ -93,7 +92,6 @@ namespace Lab4
                 return envPath;
             }
 
-            // Check in the user's home directory if it contains the required files
             string homePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             return homePath;
         }
