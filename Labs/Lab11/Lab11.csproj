@@ -185,11 +185,10 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="BoardGame.cs" />
-    <Compile Include="DocumentUtils.cs" />
-    <Compile Include="GoGame.cs" />
-    <Compile Include="LabRunner.cs" />
-    <Compile Include="ProfitUtils.cs" />
+    <Compile Include="Derangements.cs" />
+    <Compile Include="KadaneUtils.cs" />
+    <Compile Include="ShortectPath.cs" />
+    <Compile Include="RunnerLabs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
