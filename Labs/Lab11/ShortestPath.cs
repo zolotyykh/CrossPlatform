@@ -2,7 +2,6 @@
 {
 	public class ShortestPath
 	{
-        // Константа для нескінченності
         public const int INF = int.MaxValue / 2;
 
         public static int FindMaxShortestPath(int[,] dist, int N)
