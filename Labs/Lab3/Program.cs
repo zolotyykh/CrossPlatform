@@ -66,7 +66,7 @@ namespace Lab3
 
                 File.WriteAllText(outputFilePath, result.ToString());
 
-                Console.WriteLine($"Результат успішно записано у файл {outputFileName}");
+                Console.WriteLine($"Результат успішно записано у файл: {outputFileName}");
             }
             catch (FileNotFoundException e)
             {
