@@ -22,7 +22,6 @@ namespace Lab5.Models
                     throw new Exception("Матриця відстаней не може бути порожньою.");
                 }
 
-                // Розділяємо введені рядки
                 var rows = DistanceMatrixInput
                     .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(row => row.Split(new[] { " ", "\t" }, StringSplitOptions.RemoveEmptyEntries)
@@ -30,13 +29,11 @@ namespace Lab5.Models
                         .ToArray())
                     .ToArray();
 
-                // Перевіряємо розмірність матриці
                 if (rows.Length != GraphSize || rows.Any(row => row.Length != GraphSize))
                 {
                     throw new Exception($"Матриця повинна бути розміром {GraphSize}x{GraphSize}.");
                 }
 
-                // Конвертуємо в двовимірний масив
                 var matrix = new int[GraphSize, GraphSize];
                 for (int i = 0; i < GraphSize; i++)
                 {
