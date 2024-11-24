@@ -17,29 +17,36 @@ namespace Lab5.Models
         {
             get
             {
-                try
+                if (string.IsNullOrWhiteSpace(DistanceMatrixInput))
                 {
-                    var rows = DistanceMatrixInput
-                        .Split("\r\n", StringSplitOptions.RemoveEmptyEntries)
-                        .Select(row => row.Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray())
-                        .ToArray();
+                    throw new Exception("Матриця відстаней не може бути порожньою.");
+                }
 
-                    if (rows.Length != GraphSize || rows.Any(row => row.Length != GraphSize))
+                // Розділяємо введені рядки
+                var rows = DistanceMatrixInput
+                    .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(row => row.Split(new[] { " ", "\t" }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(int.Parse)
+                        .ToArray())
+                    .ToArray();
+
+                // Перевіряємо розмірність матриці
+                if (rows.Length != GraphSize || rows.Any(row => row.Length != GraphSize))
+                {
+                    throw new Exception($"Матриця повинна бути розміром {GraphSize}x{GraphSize}.");
+                }
+
+                // Конвертуємо в двовимірний масив
+                var matrix = new int[GraphSize, GraphSize];
+                for (int i = 0; i < GraphSize; i++)
+                {
+                    for (int j = 0; j < GraphSize; j++)
                     {
-                        throw new Exception("Невідповідність розмірів матриці.");
+                        matrix[i, j] = rows[i][j];
                     }
-
-                    var matrix = new int[GraphSize, GraphSize];
-                    for (int i = 0; i < GraphSize; i++)
-                        for (int j = 0; j < GraphSize; j++)
-                            matrix[i, j] = rows[i][j];
-
-                    return matrix;
                 }
-                catch
-                {
-                    return null;
-                }
+
+                return matrix;
             }
         }
 
