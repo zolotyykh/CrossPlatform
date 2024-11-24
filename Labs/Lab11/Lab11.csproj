@@ -187,7 +187,7 @@
   <ItemGroup>
     <Compile Include="Derangements.cs" />
     <Compile Include="KadaneUtils.cs" />
-    <Compile Include="ShortectPath.cs" />
+    <Compile Include="ShortestPath.cs" />
     <Compile Include="RunnerLabs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
